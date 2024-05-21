@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">  
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    
+    <title>Library Holding Cataloging System</title>
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+  
+   <!-- Custom styles for this template-->
+    <link href="css/sb-admin.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  
+<style> 
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+.container {
+  position: relative;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+}
+
+.image-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-top: 20px;
+  border-color: aliceblue;
+}
+
+.image-gallery img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  
+}
+
+.back-button {
+  position: absolute;
+  top: 10px; 
+  right: 10px;
+}
+
+</style>
+</head>
+<body>
+  <div class="container">
+    
+    <p>Don't have an account? <br/> Please visit Uep Main Library to complete the process of your Library number!<br/><br/><br/>
+       <h2> Uep Main Library Holding Cataloging System </h2>
+    </p>
+    <div class="image-gallery">
+      <img src="img/guest1.png" >
+      <img src="img/guest2.png" >
+    </div>
+    <button class="back-button" onclick="goBack()">Back</button>
+  </div>
+
+  <script>
+    function goBack() {
+      window.history.back();
+    }
+  </script>
+</body>
+</html>

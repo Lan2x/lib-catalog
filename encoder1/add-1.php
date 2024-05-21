@@ -1,0 +1,164 @@
+<?php
+session_start();
+include ('../connection.php');
+$id = $_SESSION['id'];
+$first_name = $_SESSION['first_name'];
+if(empty($id))
+{
+    header("Location: index.php"); 
+}
+$id = $_GET['id'];
+$fetch_query = mysqli_query($data, "select * from tbl_collection where id='$id'");
+$row = mysqli_fetch_array($fetch_query);
+if(isset($_REQUEST['save-col-btn']))
+{
+   
+	$title = $_POST['title'];
+    $author = $_POST['author'];
+    $isbn = $_POST['isbn'];
+    $call_number = $_POST['call_number'];
+    $publisher = $_POST['publisher'];
+    $publication_date = $_POST['publication_date'];
+    $edition = $_POST['edition'];
+    $price = $_POST['price'];
+    $accession_num = $_POST['accession_num'];
+    $quantity = $_POST['quantity'];
+    
+    
+            
+    $update_collection = mysqli_query($data,"update tbl_collection set title='$title', author='$author', isbn='$isbn', call_number='$call_number', publisher='$publisher', publication_date='$publication_date', edition='$edition', price='$price', accession_num ='$accession_num', quantity='$quantity' where id='$id'");
+
+    if($update_collection > 0)
+    {
+?>
+<script type="text/javascript">
+    alert("Collection update successfully.");
+    window.location.href='collection.php';
+</script>
+<?php
+}
+}
+?>
+<?php include('include/header.php'); ?>
+<div id="wrapper">
+<?php include('include/side-bar.php'); ?>
+
+    <div id="content-wrapper">
+
+      <div class="container-fluid">
+
+       
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">Add Collection</a>
+          </li>
+          
+        </ol>
+
+  <div class="card mb-3">
+          <div class="card-header">
+            <i class="fa fa-info-circle"></i>
+            Add Details</div>
+             
+            <form method="post" class="form-valide">
+          <div class="card-body">
+
+                                  
+          
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Title <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="title" id="title" class="form-control" placeholder="Enter Title" required value="<?php echo $row['title']; ?>" readonly>
+                                       </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Author <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="author" id="author" class="form-control" placeholder="Enter Author" required value="<?php echo $row['author']; ?>" readonly>
+                                       </div>
+                                  </div>
+
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">ISBN<span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="isbn" id="isbn" class="form-control" placeholder="Enter ISBN" required value="<?php echo $row['isbn']; ?>" readonly>
+                                       </div>
+                                  </div>
+
+                                  <!-- <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Barcode <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="barcode" id="barcode" class="form-control" placeholder="Enter Barcode" required value="<?php echo $row['barcode']; ?>" readonly>
+                                       </div>
+                                  </div> -->
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Call Number <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="call_number" id="call_number" class="form-control" placeholder="Enter Call Number"  value="<?php echo $row['call_number']; ?>">
+                                       </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Publisher <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="publisher" name="publisher" id="publisher" class="form-control" placeholder="Publisher" required value="<?php echo $row['publisher']; ?>" readonly>
+                                       </div>
+                                  </div>
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Publication Date <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="publication_date" name="publication_date" id="publication_date" class="form-control" placeholder="Enter Publication Date" required value="<?php echo $row['publication_date']; ?>" readonly>
+                                       </div>
+                                  </div>
+                                  
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Edition <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="edition" id="edition" class="form-control" placeholder="Enter Edition" required value="<?php echo $row['edition']; ?>" readonly>
+                                       </div>
+                                  </div>
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="price">Price <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="price" id="price" class="form-control" placeholder="Enter Price" required value="<?php echo $row['price']; ?>" readonly>
+                                       </div>
+                                  </div>
+                                  
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="remarks">Accession Number <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="accession_num" id="accession_num" class="form-control" placeholder="Enter Accession Number" value="<?php echo $row['accession_num']; ?>">
+                                       </div>
+                                  </div>   
+
+                                  <div class="form-group row">
+                                      <label class="col-lg-4 col-form-label" for="price">Quantity <span class="text-danger">*</span></label>
+                                       <div class="col-lg-6">
+                                      <input type="text" name="quantity" id="quantity" class="form-control" placeholder="Enter Quantity" value="<?php echo $row['quantity']; ?>" >
+                                       </div>
+                                  </div>                                         
+                                    
+                                                            
+                                        <div class="form-group row">
+                                            <div class="col-lg-8 ml-auto">
+                                                <button type="submit" name="save-col-btn" class="btn btn-primary">Save</button>
+                                            </div>
+                                        </div>
+                                    
+                                </div>
+                                </form>
+                            </div>
+                        
+    </div>
+         
+        </div>
+     
+  <a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+  </a>
+ 
+ <?php include('include/footer.php'); ?>
